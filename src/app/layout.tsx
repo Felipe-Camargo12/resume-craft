@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Nunito_Sans } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
+
 import { cn } from "@/lib/utils";
 
 const fontSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
@@ -17,8 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-">
-      <body className={cn("min-h-screen bg-background font-sans antialiased", fontTitle.variable, fontSans.variable)}>{children}</body>
+    <html lang="pt-BR">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontTitle.variable,
+          fontSans.variable
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
