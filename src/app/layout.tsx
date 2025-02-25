@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Nunito, Nunito_Sans } from "next/font/google";
-import "@/styles/globals.css";
+import { Roboto, Roboto_Flex } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/shared/theme-provider"
 
 import { cn } from "@/lib/utils";
 
-const fontSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
-const fontTitle = Nunito({ subsets: ["latin"], variable: "--font-title" });
+const fontTitle = Roboto({
+  subsets: ["latin"], variable: "--font-title",
+  weight: "400"
+});
+const fontSans = Roboto_Flex({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Craft CV",
@@ -21,12 +25,19 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-sans",
           fontTitle.variable,
           fontSans.variable
         )}
-      >
-        {children}
+        >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
